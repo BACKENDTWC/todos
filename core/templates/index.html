@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Index File</title>
+    <style>
+        .flex-center{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .w-40{
+            width: 500px;
+        }
+        .flex-between{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .completed{
+            text-decoration: line-through;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container pt-4">
+        <div class="flex-center">
+            <h1 class="p-4">My Todos Application</h1>
+            <div class="w-40">
+                <ul class="list-group">
+                    {% for todo in todos_list %}
+                        <li class="list-group-item flex-between">
+                            <p {% if todo.completed %}class="completed"{% endif %}>{{todo.text}}</p>
+                            <p>{{todo.created}}</p>
+                            <button class="btn btn-success">Mark Completed</button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div>
+            <form method="post" action="/create-teacher/">
+                {% csrf_token %}
+                <input type="text" name="first_name">
+                <input type="text" name="last_name">
+                <input type="text" name="school">
+                <input type="date" name="hire_date">
+                <input type="number" name="salary">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
